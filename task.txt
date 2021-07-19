@@ -1,16 +1,21 @@
+
+API Mẫu Cybersoft: https://movie0706.cybersoft.edu.vn/swagger/index.html?fbclid=IwAR15-0Ox5TcDhS9oS4rQ-4HEcNhuce6Rt165pWioQnbeqLOYmcVNR3Na140
+MongoDB: https://cloud.mongodb.com/v2/60f4470690fb6b0ac7fcef43#metrics/replicaSet/60f4489e7141eb60c1905667/explorer/myFirstDatabase/users/find
+Postman: Tự update
+
 ---------------- QUẢN LÍ PHIM --------------------
-1) Lấy danh sách phim                         Done         GET
-2) Lấy danh sách phim phân trang              Pending      GET
+1) Lấy danh sách phim                         Done         GET          localhost:5000/api/movie/
+2) Lấy danh sách phim phân trang              Done         GET          localhost:5000/api/movie/page/:page
 3) Lấy danh sách phim theo ngày               Pending      GET
-4) Thêm phim                                  Done         POST
+4) Thêm phim                                  Done         POST         localhost:5000/api/movie/
 5) Thêm phim Upload hình                      Pending      POST
 6) Cập nhật phim Upload                       Pending      POST
-7) Cập nhật phim                              Done         POST
+7) Cập nhật phim                              Done         POST         localhost:5000/api/movie/:id
 8) Upload hình ảnh phim                       Pending      POST
-9) Xoá phim                                   Done         DELETE
-10) Lấy thông tin phim                        Done         GET
+9) Xoá phim                                   Done         DELETE       localhost:5000/api/movie/:id
+10) Lấy thông tin phim                        Done         GET          localhost:5000/api/movie/:id
 
----------------->>>>>>>>>>>>>>>>>>>>>>>>      5/10
+---------------->>>>>>>>>>>>>>>>>>>>>>>>      6/10
 
 
 
