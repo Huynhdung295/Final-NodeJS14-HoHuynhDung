@@ -6,7 +6,7 @@ Postman: Tự update
 ---------------- QUẢN LÍ PHIM --------------------
 1) Lấy danh sách phim                         Done         GET          localhost:5000/api/movie/
 2) Lấy danh sách phim phân trang              Done         GET          localhost:5000/api/movie/page/:page
-3) Lấy danh sách phim theo ngày               Pending      GET
+3) Lấy danh sách phim theo ngày               Done         GET          localhost:5000/api/movie/date/movie
 4) Thêm phim                                  Done         POST         localhost:5000/api/movie/
 5) Thêm phim Upload hình                      Pending      POST
 6) Cập nhật phim Upload                       Pending      POST
@@ -15,25 +15,25 @@ Postman: Tự update
 9) Xoá phim                                   Done         DELETE       localhost:5000/api/movie/:id
 10) Lấy thông tin phim                        Done         GET          localhost:5000/api/movie/:id
 
----------------->>>>>>>>>>>>>>>>>>>>>>>>      6/10
+---------------->>>>>>>>>>>>>>>>>>>>>>>>      7/10
 
 
 
 ---------------- QUẢN LÍ USER --------------------
-1) Lấy danh sách loại người dùng              Pending      GET
-2) Đăng nhập                                  Done         POST
-3) Dăng kí                                    Done         POST
-4) Lấy danh sách người dùng                   Pending      GET
-5) Lấy danh sách người dùng phân trang        Pending      GET
-6) Tìm kiếm người dùng                        Pending      GET
-7) Tìm kiếm người dùng phân trang             Pending      GET
+1) Lấy danh sách loại người dùng              Done         GET          localhost:5000/api/users/list-user/:type
+2) Đăng nhập                                  Done         POST         localhost:5000/api/users/login
+3) Dăng kí                                    Done         POST         localhost:5000/api/users/register
+4) Lấy danh sách người dùng                   Done         GET          localhost:5000/api/users/list-user
+5) Lấy danh sách người dùng phân trang        Done         GET          localhost:5000/api/users/list-user/page/:page
+6) Tìm kiếm người dùng                        Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa
+7) Tìm kiếm người dùng phân trang             Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa/:page
 8) Thông tin tài khoản                        Pending      POST
 9) Thêm người dùng                            Pending      POST
 10) Cập nhật thông tin người dùng             Pending      PUT
-11) Xoá người dùng                            Pending      DELETE
+11) Xoá người dùng                            Done         DELETE       localhost:5000/api/users/:id
 
 
----------------->>>>>>>>>>>>>>>>>>>>>>>>      2/11
+---------------->>>>>>>>>>>>>>>>>>>>>>>>      7/11
 
 
 

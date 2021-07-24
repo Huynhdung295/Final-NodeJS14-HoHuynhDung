@@ -5,9 +5,11 @@ dotenv.config();
 const usersRoutes = require("./routes/user-router");
 const movieRoutes = require("./routes/movie-routes");
 const bodyParser = require("body-parser");
+const http = require("http");
 
 const app = express();
 app.use(bodyParser.json());
+
 
 const PORT = process.env.PORT || 5000;
 

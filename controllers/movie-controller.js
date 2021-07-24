@@ -5,22 +5,25 @@ const Movie = require("../models/movie-model");
 
 // CREATE MOVIE
 const createMovie = async (req, res) => {
+
   const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
-
+    const {file} = req
+    const urlImage = `http://localhost:5000/${file.path}`
   const {
     title,
     description,
     creator,
     biDanh,
     trailer,
-    hinhAnh,
     maNhom,
     ngayKhoiChieu,
     danhGia,
   } = req.body;
+
   let existingUser = await User.findOne({ _id: creator });
+
   if (!existingUser)
     return res.status(400).json({ error: "Người dùng không hợp lệ" });
 
@@ -30,14 +33,15 @@ const createMovie = async (req, res) => {
     creator,
     biDanh,
     trailer,
-    hinhAnh,
+    hinhAnh: urlImage,
     maNhom,
     ngayKhoiChieu,
     danhGia,
   });
-
   try {
     await movie.save();
+    // movie.createdAt;
+    // movie.updatedAt
     res.status(200).json({
       message: "Thêm phim thành công",
       movie: movie,
@@ -62,7 +66,6 @@ const getMovieById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 // GET ALL MOVIES
 const getAllMovies = async (req, res) => {
   try {
@@ -72,7 +75,6 @@ const getAllMovies = async (req, res) => {
     return res.status(500).json({ message: "server error" });
   }
 };
-
 // UPDATE MOVIE
 const updateMovie = async (req, res) => {
   const errors = validationResult(req);
@@ -97,24 +99,28 @@ const updateMovie = async (req, res) => {
   try {
     const movie = await Movie.findById(movieId);
     if (!movie) return res.status(404).json({ message: "movie not found." });
-    await movie.updateOne({
-      title,
-      description,
-      creator,
-      biDanh,
-      trailer,
-      hinhAnh,
-      maNhom,
-      ngayKhoiChieu,
-      danhGia,
-    });
+    await movie.updateOne(
+      {
+        title,
+        description,
+        creator,
+        biDanh,
+        trailer,
+        hinhAnh,
+        maNhom,
+        ngayKhoiChieu,
+        danhGia,
+      },
+      {
+        timestamps: { createdAt: false, updatedAt: true },
+      }
+    );
     return res.status(200).json(movie);
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: "server error" });
   }
 };
-
 // DELETE MOVIE
 const deleteMovie = async (req, res) => {
   const movieId = req.params.id;
@@ -135,7 +141,6 @@ const deleteMovie = async (req, res) => {
     res.status(500).json({ error: "server error" });
   }
 };
-
 // PANIGATION MOVIE
 const paginationMovie = async (req, res) => {
   let page = req.params.page || 1;
@@ -149,6 +154,24 @@ const paginationMovie = async (req, res) => {
     return res.status(500).json({ message: "server error" });
   }
 };
+// MOVIE DATE
+const dateMovie = async (req, res) => {
+  const { year, month, day, toYear, toMonth, toDay } = req.body;
+
+  try {
+    const movies = await Movie.find({
+      "createdAt": {
+        $gte: `${year}-${month}-${day}T13:02:15.326Z`,
+        $lte: `${toYear}-${toMonth}-${toDay}T13:02:15.326Z`,
+      },
+    });
+    return res.status(200).json(movies);
+  } catch (err) {
+    return res.status(500).json({
+      message: "Nhập đầy đủ khoảng thời gian bạn muốn tìm!",
+    });
+  }
+};
 
 module.exports = {
   createMovie,
@@ -157,4 +180,5 @@ module.exports = {
   updateMovie,
   deleteMovie,
   paginationMovie,
+  dateMovie,
 };
