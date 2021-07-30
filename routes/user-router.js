@@ -4,6 +4,7 @@ const express = require('express');
 const auth = require("../auth"); 
 const test = require("../phanQuyen")
 const router = express.Router();
+const {checkDataUser} = require("../validation/user-validation")
 // Route Đăng kí
 router.post(
   "/register",
@@ -39,4 +40,8 @@ router.get("/list-user/search/:tuKhoa",auth,test, usersController.searchUser)
 router.get("/list-user/search/:tuKhoa/:page",auth,test, usersController.searchPagaUser)
 // Route Xóa user
 router.delete("/:userID", auth,test,usersController.deleteUser)
+// Tìm thông tin user
+router.get("/:userID", auth, test, usersController.getUserByID)
+// Tạo thêm user 
+router.post("/", auth, test, checkDataUser, usersController.createUser)
 module.exports = router;

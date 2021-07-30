@@ -1,11 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
 dotenv.config();
 const usersRoutes = require("./routes/user-router");
 const movieRoutes = require("./routes/movie-routes");
-const bodyParser = require("body-parser");
-const http = require("http");
+const path = require("path")
 
 const app = express();
 app.use(bodyParser.json());

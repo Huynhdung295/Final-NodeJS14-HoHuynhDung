@@ -9,7 +9,8 @@ const userSchema = new Schema({
   phone: {type: String, required: true},
   maNhom: {type: String, default: "MEMBER"},
   type: {type: String, default: "USER"},
-  hoTen: {type: String, required: true}
-});
+  hoTen: {type: String, required: true},
+  creator: { type: String, required: false }
+},{ timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

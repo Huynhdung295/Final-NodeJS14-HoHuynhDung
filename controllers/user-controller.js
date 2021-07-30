@@ -163,6 +163,109 @@ const deleteUser = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+// Thông tin tài khoản
+const getUserByID = async (req, res) => {
+  const userID = req.params.userID;
+  if (!ObjectId.isValid(userID))
+    return res.status(400).json({ error: "ID không hợp lệ" });
+
+  try {
+    const user = await User.findById(userID);
+    if (!user)
+      return res.status(404).json("Không có tài khoản nào thuộc ID bạn tìm!");
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+// Update tài khoản
+const updateUser = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    return res.status(400).json({ errors: errors.array() });
+
+  const {
+    taiKhoan,
+    password,
+    email,
+    phone,
+    maNhom,
+    type,
+    hoTen,
+    danhGia,
+  } = req.body;
+  const movieId = req.params.id;
+  if (!ObjectId.isValid(movieId))
+    return res.status(400).json({ error: "Invalid id" });
+
+  try {
+    const user = await User.findById(movieId);
+    if (!user) return res.status(404).json({ message: "user not found." });
+    await user.updateOne(
+      {
+        title,
+        description,
+        creator,
+        biDanh,
+        trailer,
+        hinhAnh: urlImage,
+        maNhom,
+        ngayKhoiChieu,
+        danhGia,
+      },
+      {
+        timestamps: { createdAt: false, updatedAt: true },
+      }
+    );
+    return res.status(200).json(movie);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ error: "server error" });
+  }
+};
+// Tạo tài khoản
+const createUser = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    return res.status(400).json({ errors: errors.array() });
+
+  const {
+    taiKhoan,
+    password,
+    email,
+    phone,
+    maNhom,
+    type,
+    hoTen,
+    creator
+  } = req.body;
+
+  let existingUser = await User.findOne({ _id: creator });
+
+  if (!existingUser)
+    return res.status(400).json({ error: "Người dùng không hợp lệ" });
+
+  const user = new User({
+    taiKhoan,
+    password,
+    email,
+    phone,
+    maNhom,
+    type,
+    hoTen,
+    creator
+  });
+  try {
+    await user.save();
+    res.status(200).json({
+      message: "Thêm tài khoản thành công",
+      user: user,
+    });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -172,4 +275,6 @@ module.exports = {
   searchUser,
   searchPagaUser,
   deleteUser,
+  getUserByID,
+  createUser
 };

@@ -8,14 +8,14 @@ Postman: Tự update
 2) Lấy danh sách phim phân trang              Done         GET          localhost:5000/api/movie/page/:page
 3) Lấy danh sách phim theo ngày               Done         GET          localhost:5000/api/movie/date/movie
 4) Thêm phim                                  Done         POST         localhost:5000/api/movie/
-5) Thêm phim Upload hình                      Pending      POST
-6) Cập nhật phim Upload                       Pending      POST
-7) Cập nhật phim                              Done         POST         localhost:5000/api/movie/:id
-8) Upload hình ảnh phim                       Pending      POST
+5) Thêm phim Upload hình                      Done         POST         localhost:5000/api/movie/?hinhAnh
+6) Cập nhật phim Upload                       Done         PUT          localhost:5000/api/movie/:id/?hinhAnh
+7) Cập nhật phim                              Done         PUT          localhost:5000/api/movie/:id
+8) Upload hình ảnh phim                       Done         POST         localhost:5000/api/movie/?hinhAnh
 9) Xoá phim                                   Done         DELETE       localhost:5000/api/movie/:id
 10) Lấy thông tin phim                        Done         GET          localhost:5000/api/movie/:id
 
----------------->>>>>>>>>>>>>>>>>>>>>>>>      7/10
+---------------->>>>>>>>>>>>>>>>>>>>>>>>      10/10
 
 
 
@@ -27,13 +27,13 @@ Postman: Tự update
 5) Lấy danh sách người dùng phân trang        Done         GET          localhost:5000/api/users/list-user/page/:page
 6) Tìm kiếm người dùng                        Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa
 7) Tìm kiếm người dùng phân trang             Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa/:page
-8) Thông tin tài khoản                        Pending      POST
-9) Thêm người dùng                            Pending      POST
+8) Thông tin tài khoản                        Done         GET          localhost:5000/api/users/:userID
+9) Thêm người dùng                            Done         POST         localhost:5000/api/users/
 10) Cập nhật thông tin người dùng             Pending      PUT
 11) Xoá người dùng                            Done         DELETE       localhost:5000/api/users/:id
 
 
----------------->>>>>>>>>>>>>>>>>>>>>>>>      7/11
+---------------->>>>>>>>>>>>>>>>>>>>>>>>      10/11
 
 
 

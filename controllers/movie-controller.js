@@ -3,14 +3,14 @@ const ObjectId = require("mongoose").Types.ObjectId;
 const User = require("../models/user-model");
 const Movie = require("../models/movie-model");
 
+
 // CREATE MOVIE
 const createMovie = async (req, res) => {
-
+  const urlImage = `${req.originalUrl}`;
   const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
-    const {file} = req
-    const urlImage = `http://localhost:5000/${file.path}`
+
   const {
     title,
     description,
@@ -77,6 +77,7 @@ const getAllMovies = async (req, res) => {
 };
 // UPDATE MOVIE
 const updateMovie = async (req, res) => {
+  const urlImage = `${req.originalUrl}`;
   const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
@@ -87,7 +88,6 @@ const updateMovie = async (req, res) => {
     creator,
     biDanh,
     trailer,
-    hinhAnh,
     maNhom,
     ngayKhoiChieu,
     danhGia,
@@ -106,7 +106,7 @@ const updateMovie = async (req, res) => {
         creator,
         biDanh,
         trailer,
-        hinhAnh,
+        hinhAnh: urlImage,
         maNhom,
         ngayKhoiChieu,
         danhGia,
@@ -160,7 +160,7 @@ const dateMovie = async (req, res) => {
 
   try {
     const movies = await Movie.find({
-      "createdAt": {
+      createdAt: {
         $gte: `${year}-${month}-${day}T13:02:15.326Z`,
         $lte: `${toYear}-${toMonth}-${toDay}T13:02:15.326Z`,
       },
