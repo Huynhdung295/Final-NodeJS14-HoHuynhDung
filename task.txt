@@ -29,24 +29,27 @@ Postman: Tự update
 7) Tìm kiếm người dùng phân trang             Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa/:page
 8) Thông tin tài khoản                        Done         GET          localhost:5000/api/users/:userID
 9) Thêm người dùng                            Done         POST         localhost:5000/api/users/
-10) Cập nhật thông tin người dùng             Pending      PUT
+10) Cập nhật thông tin người dùng             Done         PUT          localhost:5000/api/users/:userID
 11) Xoá người dùng                            Done         DELETE       localhost:5000/api/users/:id
 
 
----------------->>>>>>>>>>>>>>>>>>>>>>>>      10/11
+---------------->>>>>>>>>>>>>>>>>>>>>>>>      11/11
 
 
-
+ 
 
 ---------------- QUẢN LÍ ĐẶT VÉ -----------------
+1) Đặt vé                                     Done         POST         localhost:5000/api/lc/datve     
+2) Lấy danh sách phòng vé                     Done         GET          localhost:5000/api/lc/lcmovie/:id
+3) Tạo lịch chiếu                             Done         POST         localhost:5000/api/lc/lcmovie
 
-
----------------->>>>>>>>>>>>>>>>>>>>>>>>      0/3
-
+---------------->>>>>>>>>>>>>>>>>>>>>>>>      3/3
 
 
 
 ---------------- QUẢN LÍ RẠP --------------------
+1) Lấy thông tin hệ thống rạp                 Done         GET          localhost:5000/api/quanLyRap/thongtinrap
+3) Lấy thông tin lịch chiêú (Theo phim)       Done         GET          localhost:5000/api/quanLyRap/thongTinLichChieuRap/:id
+4) Lấy thông tin lịch chiếu phim (Theo rạp)   Done         GET          localhost:5000/api/quanLyRap/thongTinLichChieuPhim/:id
 
-
----------------->>>>>>>>>>>>>>>>>>>>>>>>      0/4
+---------------->>>>>>>>>>>>>>>>>>>>>>>>      3/3

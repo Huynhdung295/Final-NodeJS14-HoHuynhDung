@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 dotenv.config();
 const usersRoutes = require("./routes/user-router");
 const movieRoutes = require("./routes/movie-routes");
+const lcRoutes = require("./routes/lc-routes")
+const quanLyRap = require("./routes/management-routes")
 const path = require("path")
 
 const app = express();
@@ -28,6 +30,8 @@ mongoose.connection.on("error", (err) => {
 
 app.use("/api/users", usersRoutes);
 app.use("/api/movie", movieRoutes);
+app.use("/api/lc",lcRoutes )
+app.use("/api/quanLyRap", quanLyRap)
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}/`);

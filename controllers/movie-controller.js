@@ -3,7 +3,6 @@ const ObjectId = require("mongoose").Types.ObjectId;
 const User = require("../models/user-model");
 const Movie = require("../models/movie-model");
 
-
 // CREATE MOVIE
 const createMovie = async (req, res) => {
   const urlImage = `${req.originalUrl}`;

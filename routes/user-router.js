@@ -42,6 +42,8 @@ router.get("/list-user/search/:tuKhoa/:page",auth,test, usersController.searchPa
 router.delete("/:userID", auth,test,usersController.deleteUser)
 // Tìm thông tin user
 router.get("/:userID", auth, test, usersController.getUserByID)
+// Update user
+router.put("/:userID", auth, test, usersController.updateUser)
 // Tạo thêm user 
 router.post("/", auth, test, checkDataUser, usersController.createUser)
 module.exports = router;

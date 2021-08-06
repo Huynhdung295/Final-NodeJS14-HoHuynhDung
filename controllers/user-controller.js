@@ -39,6 +39,39 @@ const register = async (req, res) => {
   );
   res.status(201).json({ token: token, userId: createdUser.id });
 };
+// Tạo tài khoản
+const createUser = async (req, res) => {
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) return res.status(400).json("check your data");
+  const { taiKhoan, password, email, phone, maNhom, type, hoTen, creator } =
+  req.body;
+ 
+  let existingUser = await User.findOne({ email: email });
+  if (existingUser) return res.status(400).json("Email đã tồn tại");
+
+  let existingAccount = await User.findOne({ taiKhoan: taiKhoan });
+  if (existingAccount) return res.status(400).json("Tài khoản đã tồn tại");
+
+  let hashedPassword = await bcrypt.hash(password, 12);
+
+  const createdUser = new User({
+    taiKhoan,
+    password: hashedPassword,
+    email,
+    phone,
+    maNhom,
+    type,
+    hoTen,
+    creator,
+  });
+  try {
+    await createdUser.save();
+  } catch (err) {}
+
+  res.status(201).json({  user: createdUser });
+};
 // 2) Đăng nhập tài khoản
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -56,13 +89,16 @@ const login = async (req, res) => {
     return res.status(400).json("Mật khẩu sai, không thể đăng nhập");
 
   const token = jwt.sign(
-    { userId: existingUser.id, email: existingUser.email},
+    { userId: existingUser.id, email: existingUser.email },
     "supersecretkey",
     { expiresIn: "1h" }
   );
 
-  res.status(200).json({ token: token, userId: existingUser.id, existingUser:existingUser });
- 
+  res.status(200).json({
+    token: token,
+    userId: existingUser.id,
+    existingUser: existingUser,
+  });
 };
 // 3) Lấy danh sách tài khoản
 const getListUser = async (req, res) => {
@@ -173,6 +209,7 @@ const getUserByID = async (req, res) => {
     const user = await User.findById(userID);
     if (!user)
       return res.status(404).json("Không có tài khoản nào thuộc ID bạn tìm!");
+    console.log(user.password);
     res.status(200).json(user);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -180,91 +217,43 @@ const getUserByID = async (req, res) => {
 };
 // Update tài khoản
 const updateUser = async (req, res) => {
+
   const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
-
-  const {
-    taiKhoan,
-    password,
-    email,
-    phone,
-    maNhom,
-    type,
-    hoTen,
-    danhGia,
-  } = req.body;
-  const movieId = req.params.id;
-  if (!ObjectId.isValid(movieId))
-    return res.status(400).json({ error: "Invalid id" });
+  const { maNhom, type, phone, hoTen, password } = req.body;
+  let hashedPassword = await bcrypt.hash(password, 12);
+  const userID = req.params.userID;
 
   try {
-    const user = await User.findById(movieId);
+    const user = await User.findById(userID);
     if (!user) return res.status(404).json({ message: "user not found." });
-    await user.updateOne(
+
+   const update = await user.updateOne(
       {
-        title,
-        description,
-        creator,
-        biDanh,
-        trailer,
-        hinhAnh: urlImage,
         maNhom,
-        ngayKhoiChieu,
-        danhGia,
+        type,
+        phone,
+        hoTen,
+        password: hashedPassword
       },
       {
         timestamps: { createdAt: false, updatedAt: true },
       }
     );
-    return res.status(200).json(movie);
+
+    try {
+      await update.save();
+    } catch (err) {}
+
+    return res.status(200).json(update);
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ error: "server error" });
   }
+  
 };
-// Tạo tài khoản
-const createUser = async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty())
-    return res.status(400).json({ errors: errors.array() });
 
-  const {
-    taiKhoan,
-    password,
-    email,
-    phone,
-    maNhom,
-    type,
-    hoTen,
-    creator
-  } = req.body;
-
-  let existingUser = await User.findOne({ _id: creator });
-
-  if (!existingUser)
-    return res.status(400).json({ error: "Người dùng không hợp lệ" });
-
-  const user = new User({
-    taiKhoan,
-    password,
-    email,
-    phone,
-    maNhom,
-    type,
-    hoTen,
-    creator
-  });
-  try {
-    await user.save();
-    res.status(200).json({
-      message: "Thêm tài khoản thành công",
-      user: user,
-    });
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
-};
 
 module.exports = {
   register,
@@ -273,8 +262,9 @@ module.exports = {
   getUserType,
   paginationUser,
   searchUser,
+  updateUser,
   searchPagaUser,
   deleteUser,
   getUserByID,
-  createUser
+  createUser,
 };
