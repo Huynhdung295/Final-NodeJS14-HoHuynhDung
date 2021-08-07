@@ -3,34 +3,40 @@ API Mẫu Cybersoft: https://movie0706.cybersoft.edu.vn/swagger/index.html?fbcli
 MongoDB: https://cloud.mongodb.com/v2/60f4470690fb6b0ac7fcef43#metrics/replicaSet/60f4489e7141eb60c1905667/explorer/myFirstDatabase/users/find
 Postman: Tự update
 
+Tài khoản ADMIN: 
+admin123@gmail.com   -  admin123
+
+thêm x-auth-token ở header để có quyền admin, token tồn tại trong 1 tiếng
+
+
 ---------------- QUẢN LÍ PHIM --------------------
 1) Lấy danh sách phim                         Done         GET          localhost:5000/api/movie/
-2) Lấy danh sách phim phân trang              Done         GET          localhost:5000/api/movie/page/:page
-3) Lấy danh sách phim theo ngày               Done         GET          localhost:5000/api/movie/date/movie
-4) Thêm phim                                  Done         POST         localhost:5000/api/movie/
-5) Thêm phim Upload hình                      Done         POST         localhost:5000/api/movie/?hinhAnh
-6) Cập nhật phim Upload                       Done         PUT          localhost:5000/api/movie/:id/?hinhAnh
-7) Cập nhật phim                              Done         PUT          localhost:5000/api/movie/:id
-8) Upload hình ảnh phim                       Done         POST         localhost:5000/api/movie/?hinhAnh
-9) Xoá phim                                   Done         DELETE       localhost:5000/api/movie/:id
-10) Lấy thông tin phim                        Done         GET          localhost:5000/api/movie/:id
+2) Lấy danh sách phim phân trang              Done         GET          localhost:5000/api/movie/page/:page                          1
+3) Lấy danh sách phim theo ngày               Done         GET          localhost:5000/api/movie/date/movie                          {"year": "2020","month": "06","day": "20","toYear": "2022","toMonth": "06","toDay": "15"}
+4) Thêm phim                                  Done         POST         localhost:5000/api/movie/                                    {"title": "Phim 6","description": "Đây là phim 6","creator": "60fa806252b6441930fb092d","biDanh": "Phim","trailer": "Link gì đó","maNhom": "HD01","ngayKhoiChieu": "1 ngày nào đó, chưa phải bây giờ","danhGia": 10}
+5) Thêm phim Upload hình                      Done         POST         localhost:5000/api/movie/?hinhAnh                            https://i.ytimg.com/vi/z5Jc7KiTLbs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG%26rs=AOn4CLBrOdnaaUIqB9YzZy2EvsBOFhXoZA
+6) Cập nhật phim Upload                       Done         PUT          localhost:5000/api/movie/:id/?hinhAnh                        https://i.ytimg.com/vi/z5Jc7KiTLbs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG%26rs=AOn4CLBrOdnaaUIqB9YzZy2EvsBOFhXoZA
+7) Cập nhật phim                              Done         PUT          localhost:5000/api/movie/:id                                 60fe3334ec9dbc30406b50c0             {"title": "Phim 1","description": "Đây là phim 1","creator": "60f457b2dea4d714bcb0eefb","biDanh": "Phim 1","trailer": "Link gì đó","maNhom": "HD01","ngayKhoiChieu":"1 ngày nào đó, chưa phải bây giờ","danhGia": 10}
+8) Upload hình ảnh phim                       Done         POST         localhost:5000/api/movie/?hinhAnh                            https://i.ytimg.com/vi/z5Jc7KiTLbs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG%26rs=AOn4CLBrOdnaaUIqB9YzZy2EvsBOFhXoZA
+9) Xoá phim                                   Done         DELETE       localhost:5000/api/movie/:id                                 60f91f7911922713d4f2f3c2
+10) Lấy thông tin phim                        Done         GET          localhost:5000/api/movie/:id                                 60f5ac0239fa141f6ceb4048
 
 ---------------->>>>>>>>>>>>>>>>>>>>>>>>      10/10
 
 
 
 ---------------- QUẢN LÍ USER --------------------
-1) Lấy danh sách loại người dùng              Done         GET          localhost:5000/api/users/list-user/:type
-2) Đăng nhập                                  Done         POST         localhost:5000/api/users/login
-3) Dăng kí                                    Done         POST         localhost:5000/api/users/register
+1) Lấy danh sách loại người dùng              Done         GET          localhost:5000/api/users/list-user/:type                      USER
+2) Đăng nhập                                  Done         POST         localhost:5000/api/users/login                                {"email":"admin123@gmail.com","password":"admin123" }
+3) Đăng kí                                    Done         POST         localhost:5000/api/users/register                             {"taiKhoan": "admin123","password": "admin123","email": "admin123@gmail.com","phone": "099999999","hoTen": "Hồ Huỳnh Dũng"}
 4) Lấy danh sách người dùng                   Done         GET          localhost:5000/api/users/list-user
-5) Lấy danh sách người dùng phân trang        Done         GET          localhost:5000/api/users/list-user/page/:page
-6) Tìm kiếm người dùng                        Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa
-7) Tìm kiếm người dùng phân trang             Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa/:page
-8) Thông tin tài khoản                        Done         GET          localhost:5000/api/users/:userID
-9) Thêm người dùng                            Done         POST         localhost:5000/api/users/
-10) Cập nhật thông tin người dùng             Done         PUT          localhost:5000/api/users/:userID
-11) Xoá người dùng                            Done         DELETE       localhost:5000/api/users/:id
+5) Lấy danh sách người dùng phân trang        Done         GET          localhost:5000/api/users/list-user/page/:page                 2
+6) Tìm kiếm người dùng                        Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa             hohuynhdungadmin5
+7) Tìm kiếm người dùng phân trang             Done         GET          localhost:5000/api/users/list-user/search/:tuKhoa/:page       hohuynhdungadmin3    1
+8) Thông tin tài khoản                        Done         GET          localhost:5000/api/users/:userID                              60fa71b011b6a2035c5ce713
+9) Thêm người dùng                            Done         POST         localhost:5000/api/users/                                     {"taiKhoan": "admin12345","password": "admin12345","email": "admin12345@gmail.com","phone": "0123456745","maNhom": "USER","type": "USER","hoTen": "admin", "creator": "610c1dac6620281aa82c7e66"}
+10) Cập nhật thông tin người dùng             Done         PUT          localhost:5000/api/users/:userID                              {"maNhom": "VIP","type": "ADMIN","phone": "0889889000","hoTen": "Admin super vip","password": "123456789" }
+11) Xoá người dùng                            Done         DELETE       localhost:5000/api/users/:id                                  60f91fc96ba6eb24a042b616
 
 
 ---------------->>>>>>>>>>>>>>>>>>>>>>>>      11/11
@@ -39,9 +45,9 @@ Postman: Tự update
  
 
 ---------------- QUẢN LÍ ĐẶT VÉ -----------------
-1) Đặt vé                                     Done         POST         localhost:5000/api/lc/datve     
-2) Lấy danh sách phòng vé                     Done         GET          localhost:5000/api/lc/lcmovie/:id
-3) Tạo lịch chiếu                             Done         POST         localhost:5000/api/lc/lcmovie
+1) Đặt vé                                     Done         POST         localhost:5000/api/lc/datve                                   {"maGhe": "D02","giaVe": "90000","creator": "610c1dac6620281aa82c7e66","maLichChieu": "610d2962a0d64b04bc4efc09"}
+2) Lấy danh sách phòng vé                     Done         GET          localhost:5000/api/lc/lcmovie/:id                             610d2962a0d64b04bc4efc09
+3) Tạo lịch chiếu                             Done         POST         localhost:5000/api/lc/lcmovie                                 {"maRap":"LT1","giaVe": "3000","maPhim": "60f5ac0239fa141f6ceb4048","ngayGioKhoiChieu": "08/07/21","creator": "610c1dac6620281aa82c7e66"}
 
 ---------------->>>>>>>>>>>>>>>>>>>>>>>>      3/3
 
@@ -49,7 +55,7 @@ Postman: Tự update
 
 ---------------- QUẢN LÍ RẠP --------------------
 1) Lấy thông tin hệ thống rạp                 Done         GET          localhost:5000/api/quanLyRap/thongtinrap
-3) Lấy thông tin lịch chiêú (Theo phim)       Done         GET          localhost:5000/api/quanLyRap/thongTinLichChieuRap/:id
-4) Lấy thông tin lịch chiếu phim (Theo rạp)   Done         GET          localhost:5000/api/quanLyRap/thongTinLichChieuPhim/:id
+3) Lấy thông tin lịch chiêú (Theo phim)       Done         GET          localhost:5000/api/quanLyRap/thongTinLichChieuRap/:id         60f5ac0239fa141f6ceb4048
+4) Lấy thông tin lịch chiếu phim (Theo rạp)   Done         GET          localhost:5000/api/quanLyRap/thongTinLichChieuPhim/:id        LT1
 
 ---------------->>>>>>>>>>>>>>>>>>>>>>>>      3/3
